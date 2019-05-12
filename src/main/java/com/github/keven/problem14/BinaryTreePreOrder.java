@@ -38,6 +38,7 @@ public class BinaryTreePreOrder {
     return getInner(root);
   }
 
+//  前序遍历（递归）
   private List<BinaryNode> getInner(BinaryNode root) {
     List<BinaryNode> result = new LinkedList<BinaryNode>();
     if (root != null) {
@@ -78,5 +79,30 @@ public class BinaryTreePreOrder {
     if (root == null) {
       throw new IllegalArgumentException("You can't pass a null BinaryNode.");
     }
+  }
+
+
+
+//  前序遍历（迭代）
+  public static void preorderTraversal (BinaryNode root){
+    if(root == null ){
+      return;
+    }
+    Stack<BinaryNode> stack = new Stack<BinaryNode>();
+    stack.push(root);
+
+    while(!stack.isEmpty()){
+      BinaryNode cur = stack.pop();
+
+      //先压入右节点数，在压左，
+      if (cur.getRight()!=null){
+        stack.push(cur.getRight());
+      }
+      if (cur.getLeft() !=null){
+        stack.push(cur.getLeft());
+      }
+    }
+
+
   }
 }

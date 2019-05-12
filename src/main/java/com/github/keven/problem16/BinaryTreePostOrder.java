@@ -98,4 +98,34 @@ public class BinaryTreePostOrder {
       throw new IllegalArgumentException("You can't pass a null BinaryNode.");
     }
   }
+
+
+
+  //  后序遍历（迭代）
+  public static void postorderTraversal (BinaryNode root){
+    if(root == null ){
+      return;
+    }
+    Stack<BinaryNode> s = new Stack<BinaryNode>();
+    Stack<BinaryNode> output = new Stack<BinaryNode>();
+    s.push(root);
+
+    while(!s.isEmpty()){
+      BinaryNode cur = s.pop();
+      output.push(cur);
+
+      //先压入右节点数，在压左，
+      if (cur.getLeft()!=null){
+        s.push(cur.getLeft());
+      }
+      if (cur.getLeft() !=null){
+        s.push(cur.getRight());
+      }
+    }
+    while (!output.isEmpty()){
+      System.out.println(output.pop().getData()+"  ");
+    }
+
+
+  }
 }

@@ -16,10 +16,10 @@
 package com.github.keven.problem13;
 
 import com.github.keven.binarytree.BinaryNode;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * Given a binary tree, can you write a method to return a list of nodes by level?
@@ -36,6 +36,7 @@ public class BinaryTreeByLevel {
    * is O(N) where N is the number of elements in the tree. The complexity order in space terms is
    * O(N) where N is the number of elements in the tree because we are going to store every node in
    * a queue.
+   * 分层遍历二叉树迭代：宽度优先遍历。
    */
   public List<BinaryNode> getUsingQueue(BinaryNode root) {
     validateBinaryNode(root);
@@ -51,6 +52,38 @@ public class BinaryTreeByLevel {
     }
     return result;
   }
+
+
+  // 分层遍历应用：按层打印二叉树
+  public ArrayList<Integer> printFromTopToBottom(BinaryNode root){
+    ArrayList<Integer> list = new ArrayList<Integer>();
+    Queue<BinaryNode> queue = new ArrayBlockingQueue<BinaryNode>(100);
+    BinaryNode last = root;
+    BinaryNode nLast = root;
+    queue.add(root);
+    while (!queue.isEmpty()){
+      BinaryNode<Integer> out = queue.poll();
+      System.out.println(out.getData() +" ");
+      list.add(out.getData());
+      if (out.getLeft() !=null){
+        queue.add(out.getLeft());
+        nLast = out.getLeft();
+      }
+      if (out.getRight() !=null){
+        queue.add(out.getRight());
+        nLast = out.getRight();
+      }
+      if (out ==last){
+        last= nLast;
+      }
+
+    }
+
+    return list;
+
+  }
+
+
 
   /**
    * Slower implementation created to resolve one of the questions of problem 13, print the binary

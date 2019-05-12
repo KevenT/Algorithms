@@ -83,4 +83,32 @@ public class BinaryTreeInOrder {
     }
   }
 
+
+
+
+  //  中序遍历（迭代）
+  public static void inorderTraversal(BinaryNode root) {
+    if (root == null) {
+      return;
+    }
+    Stack<BinaryNode> stack = new Stack<BinaryNode>();
+//    stack.push(root);
+    BinaryNode cur = root;
+
+    if (cur != null) {
+
+      while (!stack.isEmpty() ||cur != null) {
+
+        if (cur!= null) {
+          stack.push(cur);
+        }else{
+          cur= stack.pop();
+          cur = cur.getRight();
+        }
+      }
+    }
+
+
+  }
+
 }
